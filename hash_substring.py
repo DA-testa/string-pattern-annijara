@@ -37,7 +37,7 @@ def get_occurrences(pattern, text):
     h = 1
     p = 0
     t = 0
-    
+    output = ""
     for i in range (pattern_len -1):
         h = (h * d) % q
         
@@ -52,17 +52,17 @@ def get_occurrences(pattern, text):
                     break
             j += 1
             if j == pattern_len:
-                return [i]
+                output += str(i)
+                output += " "
         
         if i < main_text_len - pattern_len:
             t = (d*(t-ord(text[i])*h) + ord(text[i+pattern_len])) % q
             
             if t < 0:
-                t = t+q
-    
+                t = t + q     
     # and return an iterable variable
     
-
+    return [output]
 
 # this part launches the functions
 if __name__ == '__main__':
